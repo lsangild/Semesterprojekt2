@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# Fjern debug mappe
+/X10Modtager/X10Modtager/Debug
+
+# Fjern brugerinstillinger
+*.atsuo

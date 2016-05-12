@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "X10Modtager", "X10Modtager\X10Modtager.cppproj", "{243C24F3-C304-41D3-8DDA-C3C8A03ACA84}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "X10Modtager", "X10Modtager\X10Modtager.cproj", "{3AD1E3A4-2996-4627-973D-B13342772DE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|AVR = Release|AVR
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{243C24F3-C304-41D3-8DDA-C3C8A03ACA84}.Debug|AVR.ActiveCfg = Debug|AVR
-		{243C24F3-C304-41D3-8DDA-C3C8A03ACA84}.Debug|AVR.Build.0 = Debug|AVR
-		{243C24F3-C304-41D3-8DDA-C3C8A03ACA84}.Release|AVR.ActiveCfg = Release|AVR
-		{243C24F3-C304-41D3-8DDA-C3C8A03ACA84}.Release|AVR.Build.0 = Release|AVR
+		{3AD1E3A4-2996-4627-973D-B13342772DE8}.Debug|AVR.ActiveCfg = Debug|AVR
+		{3AD1E3A4-2996-4627-973D-B13342772DE8}.Debug|AVR.Build.0 = Debug|AVR
+		{3AD1E3A4-2996-4627-973D-B13342772DE8}.Release|AVR.ActiveCfg = Release|AVR
+		{3AD1E3A4-2996-4627-973D-B13342772DE8}.Release|AVR.Build.0 = Release|AVR
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

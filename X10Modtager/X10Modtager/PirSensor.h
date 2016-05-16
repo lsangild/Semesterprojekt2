@@ -1,7 +1,5 @@
 /*
-
 Pirsensoren forbindes til PIND0 (Arduino ben 21)
-
 */
 
 #ifndef PIRSENSOR_H_

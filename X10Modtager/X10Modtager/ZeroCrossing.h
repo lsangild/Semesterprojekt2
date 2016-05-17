@@ -1,5 +1,5 @@
 /*
-Zero Cross forbindes til PIND1 (Arduino ben 20)
+Zero Cross forbindes til PIND0 (Arduino ben 21)
 */
 
 #include <avr/interrupt.h>
@@ -14,6 +14,6 @@ void zeroCrossInit();
 void activateZeroCrossInterrupt();
 void deactivateZeroCrossInterrupt();
 
-ISR(INT1_vect);
+ISR(INT0_vect);
 
 #endif /* ZEROCROSSING_H_ */

@@ -1,19 +1,21 @@
-#define F_CPU 16000000
-#include <util/delay.h>
-#include <avr/io.h>
+#include "GlobalInclude.h"
 #include "PirSensor.h"
 #include "ZeroCrossing.h"
+#include "X10Message.h"
+#include "DataReceiver.h"
+#include "uart.h"
 
+const int unitID = 1;
+
+int inactivityBrightness = 0;
+int activityBrightness = 100;
 
 int main(void)
 {
-	DDRB = 0b11111111;
-	DDRD = 0b00000000;
 	
-	zeroCrossInit();
 
 	while(1)
 	{
-	
+		
 	}
 }

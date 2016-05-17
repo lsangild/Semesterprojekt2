@@ -1,5 +1,5 @@
 /*
-Pirsensoren forbindes til PIND0 (Arduino ben 21)
+Pirsensoren forbindes til PIND1 (Arduino ben 20)
 */
 
 #ifndef PIRSENSOR_H_
@@ -19,6 +19,6 @@ void pirIterruptInit();
 void activatePirInterrupt();
 void deactivatePirInterrupt();
 
-ISR(INT0_vect);
+ISR(INT1_vect);
 
 #endif /* PIRSENSOR_H_ */

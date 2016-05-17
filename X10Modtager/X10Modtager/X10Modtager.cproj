@@ -109,10 +109,28 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataReceiver.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DataReceiver.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="GlobalInclude.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="PirSensor.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="PirSensor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="X10Message.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="X10Modtager.c">

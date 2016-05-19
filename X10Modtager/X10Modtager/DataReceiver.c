@@ -21,7 +21,7 @@ void newMessage()
 		{
 			struct X10Message message = readMessage();
 
-			if (message.unit_ == unitID || message.unit_ == 30)
+			if (message.unit_ == unitID || message.unit_ == 31)
 			{
 				interpretMessage(message);
 			}
@@ -166,6 +166,11 @@ int getBrightness()		// Testet - Virker
 	brightness = (brightness | (getBitValue(fourthMessagePart, 3) << 2));
 	brightness = (brightness | (getBitValue(fourthMessagePart, 2) << 1));
 	brightness = (brightness | (getBitValue(fourthMessagePart, 1) << 0));
+
+	if (brightness > 100)
+	{
+		brightness = 100;
+	}
 
 	return brightness;
 }

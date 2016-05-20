@@ -118,6 +118,12 @@
     <Compile Include="GlobalInclude.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Light.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Light.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="PirSensor.c">
       <SubType>compile</SubType>
     </Compile>

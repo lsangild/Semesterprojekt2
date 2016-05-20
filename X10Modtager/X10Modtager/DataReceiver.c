@@ -15,10 +15,19 @@ void newMessage()
 {
 	insertNewBit();
 	
+	//SendChar(fourthMessagePart);
+
 	if (checkForMessage() == 1)
 	{
+		//
+
 		if (checkForLegitMessage() == 1)
 		{
+			//SendChar(firstMessagePart);
+			//SendChar(secondMessagePart);
+			//SendChar(thirdMessagePart);
+			//SendChar(fourthMessagePart);
+
 			struct X10Message message = readMessage();
 
 			if (message.unit_ == unitID || message.unit_ == 31)
@@ -47,6 +56,8 @@ void interpretMessage(struct X10Message m)
 
 void insertNewBit()		// Testet - Virker
 {
+	char newBit = (PIND & 0b00000100);
+
 	firstMessagePart = firstMessagePart << 1;
 	firstMessagePart = (firstMessagePart | ((secondMessagePart & 0b10000000) >> 7));
 
@@ -57,7 +68,10 @@ void insertNewBit()		// Testet - Virker
 	thirdMessagePart = (thirdMessagePart | ((fourthMessagePart & 0b10000000) >> 7));
 
 	fourthMessagePart = fourthMessagePart << 1;
-	fourthMessagePart = (fourthMessagePart | (PIND & 0b00000100));
+	fourthMessagePart = (fourthMessagePart | newBit);
+
+	SendChar(fourthMessagePart);
+
 }
 
 
@@ -129,6 +143,15 @@ struct X10Message readMessage()
 	message.unit_ = getUnitID();
 	message.mode_ = getMode();
 	message.brightness_ = getBrightness();
+
+	SendString("\nUnit: ");
+	SendInteger(message.unit_);
+
+	SendString("\nMode: ");
+	SendInteger(message.mode_);
+
+	SendString("\nBrightness: ");
+	SendInteger(message.brightness_);
 
 	return message;
 }

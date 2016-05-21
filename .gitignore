@@ -30,7 +30,7 @@
 # Fjern debug mappe
 /X10Modtager/X10Modtager/Debug
 /X10Modtager/X10Modtager/X10Modtager.componentinfo.xml
-.cproj
+/X10Modtager/X10Modtager/x10Modtager.cproj
 
 # Fjern brugerinstillinger
 *.atsuo

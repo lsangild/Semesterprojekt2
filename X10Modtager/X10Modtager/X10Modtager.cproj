@@ -118,15 +118,6 @@
     <Compile Include="GlobalInclude.h">
       <SubType>compile</SubType>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="Light.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Light.h">
-      <SubType>compile</SubType>
-    </Compile>
->>>>>>> parent of bd60de4... Fjernede .cproj fil fra git
     <Compile Include="PirSensor.c">
       <SubType>compile</SubType>
     </Compile>

@@ -14,8 +14,10 @@ architecture test of RecTest is
 signal clk_115200, recvalid	: std_logic;
 signal indata						: std_logic_vector(7 downto 0);
 begin
-gen	: entity work.BaudRateGenerator		port map (clk => CLOCK_50, reset => KEY(0), clk_baud => clk_115200);
-rec	: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_115200, rxdata => indata, rxvalid => recvalid);
+gen		: entity work.BaudRateGenerator		port map (clk => CLOCK_50, reset => KEY(0), clk_baud => clk_115200);
+rec		: entity work.Receiver					port map (rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_115200, rxdata => indata, rxvalid => recvalid);
+--codelock	: entity work.2_Code_Lock/Code_Lock port map (clk => CLOCK_50, reset => KEY(2), enter => KEY(3), 
+--													code => SW, lock => LEDR(0), err => LEDR(2 downto 1));
 process(recvalid)
 begin
 	if recvalid = '1' then

@@ -25,9 +25,9 @@ begin
 	end if;
 	-- if clk_count rem 434 = 0 then -- Possible horrible way to implement this. What happens when the clk_count register is full?
 	case clk_count is
-		when 433 =>
+		when 867 =>
 			clk_baud <= '1';
-		when 434 =>
+		when 868 =>
 			clk_count := 0;
 		when others =>
 		clk_baud <= '0';

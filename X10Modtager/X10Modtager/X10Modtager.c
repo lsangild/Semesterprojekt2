@@ -13,7 +13,8 @@ int activityBrightness = 100;
 
 int main(void)
 {
-
+	
+	
 	while(1)
 	{
 		

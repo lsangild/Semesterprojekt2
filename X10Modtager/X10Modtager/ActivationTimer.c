@@ -54,13 +54,13 @@ ISR(TIMER3_OVF_vect)
 		SendChar('Q');
 		SendInteger(waitedTime);
 
-		lightOff();
+		setLightLevel(0);
 		waitedTime = 0;
 		activationTimerStop();
 	}
 	else
 	{
-		lightOn();
+		setLightLevel(100);
 		SendInteger(waitedTime);	// Debug
 		SendChar(',');				//
 	}

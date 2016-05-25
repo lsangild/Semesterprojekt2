@@ -482,12 +482,11 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "F:/Dropbox/Universitet/Elektronik/2. semester/DSD/Exercise2-4/Exercise7/3_UART/Send.vwf"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VHDL_FILE 2_Code_Lock/Tester.vhd
-set_global_assignment -name VHDL_FILE 2_Code_Lock/Code_Lock.vhd
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "D:/Skole/Projekt/projektArduino/Semesterprojekt2/DE2/Receive.vwf"
+set_global_assignment -name VHDL_FILE Code_Lock.vhd
 set_global_assignment -name VHDL_FILE Receiver.vhd
 set_global_assignment -name VHDL_FILE BaudRateGenerator.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE Generator.vwf

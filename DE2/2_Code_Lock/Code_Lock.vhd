@@ -4,10 +4,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity Code_Lock is
-	port(	clk, reset, enter	:	in std_logic;
-			code	:	in std_logic_vector(3 downto 0);
-			lock	:	out std_logic;
-			err	:	out std_logic_vector(1 downto 0)
+	port(	clk, reset, codeEntry	:	in std_logic;
+			code							:	in std_logic_vector(7 downto 0);
+			lock							:	out std_logic;
+			err							:	out std_logic_vector(1 downto 0)
 			);
 end Code_Lock;
 
@@ -40,41 +40,41 @@ begin
 	end if;
 end process;
 
-nxt_state: process(present_state, enter)	-- State Machine transitions
+nxt_state: process(present_state, codeEntry)	-- State Machine transitions
 begin
 	next_state <= present_state;
 	case present_state is
 		when idle =>
-			if enter = '0' then
+			if codeEntry = '1' then
 				next_state <= eval1;
 			end if;
 			
 		when eval1 =>
-			if (enter = '1' and code = codeString) then
+			if (codeEntry = '0' and code = codeString) then
 				next_state <= unlocked;
-			elsif (enter = '1' and code /= codeString) then
+			elsif (codeEntry = '0' and code /= codeString) then
 				next_state <= wcode;
 			end if;
 			
 --		when get2 =>
---			if enter = '0' then
+--			if codeEntry = '0' then
 --				next_state <= eval2;
 --			end if;
 --			
 --		when eval2 =>
---			if (enter = '1' and code = "1110") then
+--			if (codeEntry = '1' and code = "1110") then
 --				next_state <= unlocked;
---			elsif (enter = '1' and code /= "1110") then
+--			elsif (codeEntry = '1' and code /= "1110") then
 --				next_state <= wcode;
 --			end if;
 			
 		when unlocked =>
-			if enter = '0' then
+			if codeEntry = '0' then
 				next_state <= going_idle;
 			end if;
 			
 		when going_idle =>
-			if enter = '1' then
+			if codeEntry = '0' then
 				next_state <= idle;
 			end if;
 			

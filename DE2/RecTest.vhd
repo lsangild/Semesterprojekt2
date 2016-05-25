@@ -21,11 +21,7 @@ codelock	: entity work.Code_Lock				port map (	clk => CLOCK_50, reset => KEY(0),
 																		err => LEDR(2 downto 1));
 process(lockSignal)
 begin
-	if lockSignal = '1' then
-		GPIO_1(0) <= '1';
-	else
-		GPIO_1(0) <= '0';
-	end if;
+	GPIO_1(0) <= lockSignal;
 end process;
 
 end test;

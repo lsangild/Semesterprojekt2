@@ -1,5 +1,5 @@
 /*
-Pirsensoren forbindes til PIND1 (Arduino ben 20)
+Pirsensoren forbindes til PE5 (Arduino ben 3) EXT Int 5
 */
 
 #ifndef PIRSENSOR_H_
@@ -18,6 +18,6 @@ int pirScan();
 void activatePirInterrupt();
 void deactivatePirInterrupt();
 
-ISR(INT1_vect);
+ISR(INT5_vect);
 
 #endif /* PIRSENSOR_H_ */

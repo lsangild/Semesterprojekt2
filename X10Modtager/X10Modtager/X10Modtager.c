@@ -29,23 +29,6 @@ int main(void)
 	
 	while(1)
 	{
-		/*
-		DDRJ = (DDRJ | 0b00000010);
-		_delay_ms(20);
-		PORTJ = (PORTJ | 0b00000010);
-		_delay_ms(10);
-		PORTJ = (PORTJ & 0b11111101);
-		_delay_ms(10);
-		PORTJ = (PORTJ | 0b00000010);
-		_delay_ms(100);
-
-		PORTJ = (PORTJ & 0b11111101);
-		_delay_ms(20);
-		DDRJ = (DDRJ & 0b11111101);
-		_delay_ms(100);
-		*/
+		
 	}
 }
-
-// DDRJ
-// PORTJ

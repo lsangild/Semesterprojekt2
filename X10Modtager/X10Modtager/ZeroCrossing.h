@@ -1,5 +1,5 @@
 /*
-Zero Cross forbindes til PIND0 (Arduino ben 21)
+Zero Cross forbindes til PE4 (Arduino ben 2) Ex Int 4
 */
 
 #include <avr/interrupt.h>
@@ -14,6 +14,6 @@ void zeroCrossInit();
 void activateZeroCrossInterrupt();
 void deactivateZeroCrossInterrupt();
 
-ISR(INT0_vect);
+ISR(INT4_vect);
 
 #endif /* ZEROCROSSING_H_ */

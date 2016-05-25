@@ -5,9 +5,9 @@
 
 void zeroCrossInit()
 {
-	DDRD = (DDRD & 0b11111110);
-	PORTD = (PORTD & 0b11111110);
-	EICRA = (EICRA | 0b00000001);
+	DDRE = (DDRE & 0b11101111);
+	PORTE = (PORTE & 0b11101111);
+	EICRB = (EICRB | 0b00000001);
 	activateZeroCrossInterrupt();
 	sei();
 }
@@ -15,17 +15,17 @@ void zeroCrossInit()
 
 void activateZeroCrossInterrupt()
 {
-	EIMSK = (EIMSK | 0b00000001);
+	EIMSK = (EIMSK | 0b00010000);
 }
 
 
 void deactivateZeroCrossInterrupt()
 {
-	EIMSK = (EIMSK & 0b11111110);
+	EIMSK = (EIMSK & 0b11101111);
 }
 
 
-ISR(INT0_vect)
+ISR(INT4_vect)
 {
 	if ((PIND & 0b00000100) == 0b00000100)
 	{

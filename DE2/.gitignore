@@ -218,3 +218,7 @@ TSWLatexianTemp*
 
 # Allow
 !Tools/de2_assignments.qsf
+!Receive.vwf
+!Generator.vwf
+!output_files/ASP.cdf
+!output_files/JTAG.cdf

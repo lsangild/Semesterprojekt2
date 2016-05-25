@@ -1,15 +1,14 @@
 #include "ActivationTimer.h"
 #include "uart.h"
 
-int waitedTime = 0;
+volatile int waitedTime = 0;
 
 void activationTimerInit()
 {
 	TCCR3A = (TCCR3A & 0b11111100);		// Normal mode vælges
 	TCCR3B = (TCCR3B & 0b11100111);		//
 
-	TCCR3B = (TCCR3B | 0b00000101);		// Preescaler sættes til 1024
-	TCCR3B = (TCCR3B & 0b11111101);		// 
+	TCCR3B = (TCCR3B & 0b11111000);		// Preescaler sættes til 0
 
 	TCNT3  = sec_time;					// Tælleregister sættes til 49911
 
@@ -21,9 +20,9 @@ void activationTimerInit()
 
 void activationTimerStart()
 {
+	activationTimerReset();
 	TCCR3B = (TCCR3B | 0b00000101);		// Preescaler sættes til 1024
 	TCCR3B = (TCCR3B & 0b11111101);		//
-	activationTimerReset();
 }
 
 
@@ -35,26 +34,33 @@ void activationTimerStop()
 
 void activationTimerReset()
 {
+	waitedTime = 0;
+}
+
+
+void activationClokcReset()
+{
 	TCNT3 = sec_time;
 }
 
 
 ISR(TIMER3_OVF_vect)
 {
+	waitedTime++;
+	PORTB = ~PORTB;
 	if (waitedTime >= wait_time)
 	{
-		
+		SendChar('Q');
+		SendInteger(waitedTime);
+		SendChar('\n');
 
 		waitedTime = 0;
+		activationTimerStop();
 	}
 	else
 	{
-		waitedTime++;
+		SendInteger(waitedTime);	// Debug
+		SendChar(',');				//
 	}
-	
-	SendInteger(waitedTime);
-	SendChar('\n');
-
-	activationTimerReset();
-	sei();
+	activationClokcReset();			// Reset af tælleregister
 }

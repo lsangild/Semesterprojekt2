@@ -4,7 +4,7 @@
 // Pre = 1024
 
 #define sec_time 49911		//
-#define wait_time 900		// 900 sek = 15 min
+#define wait_time 20		// 900 sek = 15 min
 
 #include "GlobalInclude.h"
 #include <avr/interrupt.h>
@@ -16,8 +16,8 @@ void activationTimerInit();
 void activationTimerStart();
 void activationTimerStop();
 void activationTimerReset();
+void activationClokcReset();
 
 ISR(TIMER3_COMPA_vect);
-
 
 #endif /* ACTIVATIONTIMER_H_ */

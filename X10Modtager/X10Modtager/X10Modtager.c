@@ -13,12 +13,39 @@ int activityBrightness = 100;
 
 int main(void)
 {
+	
+	DDRB = 0b11111111;
+	PORTB = 0b00000000;
 	InitUART(9600, 8, 'N');
-
 	activationTimerInit();
 
+	pirInit();
+	activatePirInterrupt();
+
+
+	SendChar('\n');
+	SendChar('S');
+	SendChar('\n');
+	
 	while(1)
 	{
-			
+		/*
+		DDRJ = (DDRJ | 0b00000010);
+		_delay_ms(20);
+		PORTJ = (PORTJ | 0b00000010);
+		_delay_ms(10);
+		PORTJ = (PORTJ & 0b11111101);
+		_delay_ms(10);
+		PORTJ = (PORTJ | 0b00000010);
+		_delay_ms(100);
+
+		PORTJ = (PORTJ & 0b11111101);
+		_delay_ms(20);
+		DDRJ = (DDRJ & 0b11111101);
+		_delay_ms(100);
+		*/
 	}
 }
+
+// DDRJ
+// PORTJ

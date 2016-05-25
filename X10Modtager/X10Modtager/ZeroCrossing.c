@@ -31,6 +31,4 @@ ISR(INT0_vect)
 	{
 		
 	}
-
-	reti();
 }

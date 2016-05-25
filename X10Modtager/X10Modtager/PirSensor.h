@@ -15,7 +15,6 @@ void pirInit();
 
 int pirScan();
 
-void pirIterruptInit();
 void activatePirInterrupt();
 void deactivatePirInterrupt();
 

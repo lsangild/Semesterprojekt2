@@ -12,16 +12,14 @@ entity Code_Lock is
 end Code_Lock;
 
 architecture simple of Code_Lock is
-type state is (idle, eval1, unlocked, going_idle, wcode, permlock);
+type state is (idle, eval, unlocked, going_idle, wcode, permlock);
 type state2 is (Err_0, Err_1, Err_2, Err_3);
 
 signal present_state, next_state : state;
 signal code_lock_present_state, code_lock_next_state : state2;
-signal codeString : std_logic_vector (7 downto 0); --signal declaration code string;
+signal codeString : std_logic_vector (7 downto 0) := "01000110"; --signal declaration code string for 70b
 
 begin
-codeString <= "01000110"; --binary value for 70
-
 state_reg: process(clk, reset)	-- reset and clocking to next state
 begin
 	if reset = '0' then
@@ -46,51 +44,32 @@ begin
 	case present_state is
 		when idle =>
 			if codeEntry = '1' then
-				next_state <= eval1;
+				next_state <= eval;
 			end if;
-			
-		when eval1 =>
-			if (codeEntry = '0' and code = codeString) then
+		when eval =>
+			if code = codeString then
 				next_state <= unlocked;
-			elsif (codeEntry = '0' and code /= codeString) then
+			elsif code /= codeString then
 				next_state <= wcode;
 			end if;
-			
---		when get2 =>
---			if codeEntry = '0' then
---				next_state <= eval2;
---			end if;
---			
---		when eval2 =>
---			if (codeEntry = '1' and code = "1110") then
---				next_state <= unlocked;
---			elsif (codeEntry = '1' and code /= "1110") then
---				next_state <= wcode;
---			end if;
-			
 		when unlocked =>
 			if codeEntry = '0' then
 				next_state <= going_idle;
 			end if;
-			
 		when going_idle =>
 			if codeEntry = '0' then
 				next_state <= idle;
 			end if;
-			
 		when wcode =>
 			if code_lock_next_state = Err_3 then	-- if 3 errors occured go to permlock
 				next_state <= permlock;
 			else
 				next_state <= going_idle;
 			end if;
-		
 		when permlock =>
 			null;
-		
 		when others =>
 			next_state <= idle;
-			
 	end case;
 end process;
 

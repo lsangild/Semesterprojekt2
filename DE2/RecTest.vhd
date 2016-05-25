@@ -5,7 +5,7 @@ use ieee.std_logic_1164.all;
 entity RecTest is
 	port (	CLOCK_50	: in std_logic;
 				KEY		: in std_logic_vector(3 downto 0);
-				LEDR		: out std_logic_vector(7 downto 0);
+				LEDR		: out std_logic_vector(16 downto 0);
 				GPIO_0	: in std_logic_vector(0 downto 0);
 				GPIO_1	: out std_logic_vector(0 downto 0)
 	);
@@ -22,6 +22,7 @@ codelock	: entity work.Code_Lock 				port map (clk => CLOCK_50, reset => KEY(0),
 process(recvalid)
 begin
 	if recvalid = '1' then
+		LEDR(16 downto 9) <= indata;
 		GPIO_1(0) <= lockSignal;
 	else
 		null;

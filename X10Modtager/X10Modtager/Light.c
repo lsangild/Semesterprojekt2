@@ -12,13 +12,14 @@ void lightInit()
 	
 	TCCR1A = (TCCR1A | 0b00001100);	// Sætter C-system on compare when up-counting
 
-	setLightLevel(0);
+	//setLightLevel(0);
 }
 
 
 void setLightLevel(int duty)
 {
 	OCR1C = (1 - (duty * 0.01)) * 512;	//	C-systemet bruges
+	lightOn();
 }
 
 
@@ -31,4 +32,5 @@ void lightOn()
 void lightOff()
 {
 	TCCR1B = (TCCR1B & 0b11111000);	// Preescaler sættes til 0 for at slukke
+	PORTB = (PORTB & 0b01111111);
 }

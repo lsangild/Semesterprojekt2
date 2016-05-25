@@ -1,5 +1,6 @@
 #include "ActivationTimer.h"
 #include "uart.h"
+#include "Light.h"
 
 volatile int waitedTime = 0;
 
@@ -47,20 +48,22 @@ void activationClokcReset()
 ISR(TIMER3_OVF_vect)
 {
 	waitedTime++;
-	PORTB = ~PORTB;
+
 	if (waitedTime >= wait_time)
 	{
 		SendChar('Q');
 		SendInteger(waitedTime);
-		SendChar('\n');
 
+		lightOff();
 		waitedTime = 0;
 		activationTimerStop();
 	}
 	else
 	{
+		lightOn();
 		SendInteger(waitedTime);	// Debug
 		SendChar(',');				//
 	}
+
 	activationClokcReset();			// Reset af tælleregister
 }

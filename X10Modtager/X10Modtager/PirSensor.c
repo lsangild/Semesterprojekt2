@@ -39,7 +39,8 @@ void deactivatePirInterrupt()
 
 ISR(INT5_vect)
 {
-	SendChar('a');
-
+	SendChar('\n');					//
+	SendChar('a');					// Debug
+	
 	activationTimerStart();
 }

@@ -9,13 +9,12 @@ entity BaudRateGenerator is
 				);
 end BaudRateGenerator;
 
-architecture Gen115200 of BaudRateGenerator is
+architecture Gen57600 of BaudRateGenerator is
 begin
 
 process(clk, reset)
 variable clk_count : integer;
 begin
---clk_baud <= '0';
 	if reset = '0' then
 		clk_count := 0;
 	elsif rising_edge(clk) then
@@ -23,15 +22,16 @@ begin
 	else
 		null;
 	end if;
-	-- if clk_count rem 434 = 0 then -- Possible horrible way to implement this. What happens when the clk_count register is full?
 	case clk_count is
-		when 867 =>
+		--when 867 =>
+		when 200 =>	-- For simulation
 			clk_baud <= '1';
-		when 868 =>
+		--when 868 =>
+		when 201 =>	-- For simulation
 			clk_count := 0;
 		when others =>
 		clk_baud <= '0';
 	end case;
 end process;
 
-end Gen115200;
+end Gen57600;

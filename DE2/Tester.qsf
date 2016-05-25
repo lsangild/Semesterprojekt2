@@ -485,7 +485,6 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "D:/Skole/Projekt/projektArduino/Semesterprojekt2/DE2/Receive.vwf"
 set_global_assignment -name VHDL_FILE Code_Lock.vhd
 set_global_assignment -name VHDL_FILE Receiver.vhd
 set_global_assignment -name VHDL_FILE BaudRateGenerator.vhd
@@ -495,4 +494,6 @@ set_global_assignment -name VHDL_FILE BaudTester.vhd
 set_global_assignment -name VHDL_FILE RecTest.vhd
 set_global_assignment -name CDF_FILE output_files/JTAG.cdf
 set_global_assignment -name CDF_FILE output_files/ASP.cdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Validate.vwf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "F:/Dropbox/Universitet/Elektronik/2. semester/PRJ/Gitmappen/Semesterprojekt2/DE2/Validate.vwf"

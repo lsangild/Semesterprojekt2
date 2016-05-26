@@ -3,8 +3,8 @@
 // TCCR3 = 49911
 // Pre = 1024
 
-#define sec_time 49911		//
-#define wait_time 20		// 900 sek = 15 min
+#define sec_time 49911		// 1 sek
+#define wait_time 900		// 900 sek = 15 min
 
 #include "GlobalInclude.h"
 #include <avr/interrupt.h>

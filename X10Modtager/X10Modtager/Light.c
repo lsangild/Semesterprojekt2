@@ -1,7 +1,7 @@
 #include "Light.h"
 #include "uart.h"
 
-void lightInit()
+void lightInit()				// Testet - Virker
 {
 	DDRB = (DDRB | 0b10000000);			// Sætter PB til udgang
 	PORTB = (PORTB & 0b01111111);		//
@@ -13,7 +13,7 @@ void lightInit()
 }
 
 
-void setLightLevel(int duty)
+void setLightLevel(int duty)	// Testet - Virker
 {
 	if (duty == 0)
 		lightOff();
@@ -24,15 +24,32 @@ void setLightLevel(int duty)
 }
 
 
-void lightOn()
+void lightOn()					// Testet - Virker
 {
 	TCCR1B = (TCCR1B | 0b00000100);		// Prescaler sættes til 256 for at tænde
 	TCCR1A = (TCCR1A | 0b00001100);		// C-systemes udgangs operationer vælges.
 }
 
 
-void lightOff()
+void lightOff()					// Testet - Virker
 {
 	TCCR1B = (TCCR1B & 0b11111000);		// Prescaler sættes til 0 for at slukke
 	TCCR1A = (TCCR1A & 0b11110011);		// Normal Port operation vælges
+}
+
+
+void lightInvert()				// Testet - Virker
+{
+	if ((TCCR1B & 0b00000111) == 0b00000100 && (TCCR1A & 0b00001100) == 0b00001100)
+	{
+		lightOff();
+	}
+	else if ((TCCR1B & 0b00000111) == 0b00000000 && (TCCR1A & 0b00001100) == 0b00000000)
+	{
+		lightOn();
+	}
+	else
+	{
+		lightOn();
+	}
 }

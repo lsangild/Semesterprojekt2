@@ -11,6 +11,8 @@ void zeroCrossInit()
 	EICRB = (EICRB | 0b00000001);
 	activateZeroCrossInterrupt();
 	sei();
+
+	dataReceiverInit();
 }
 
 

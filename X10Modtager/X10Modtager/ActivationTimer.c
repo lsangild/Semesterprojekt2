@@ -1,5 +1,4 @@
 #include "ActivationTimer.h"
-#include "uart.h"
 #include "Light.h"
 
 volatile int waitedTime = 0;
@@ -11,11 +10,13 @@ void activationTimerInit()
 
 	TCCR3B = (TCCR3B & 0b11111000);		// Preescaler sættes til 0
 
-	TCNT3  = sec_time;					// Tælleregister sættes til 49911
+	TCNT3  = sec_time;					// Tælleregister sættes til 49911 = 1 sek delay
 
 	TIMSK3 = (TIMSK3 | 0b00000001);		// Interrupt enable
 
 	sei();
+
+	lightInit();
 }
 
 
@@ -51,9 +52,6 @@ ISR(TIMER3_OVF_vect)
 
 	if (waitedTime >= wait_time)
 	{
-		SendChar('Q');
-		SendInteger(waitedTime);
-
 		setLightLevel(0);
 		waitedTime = 0;
 		activationTimerStop();
@@ -61,8 +59,6 @@ ISR(TIMER3_OVF_vect)
 	else
 	{
 		setLightLevel(100);
-		SendInteger(waitedTime);	// Debug
-		SendChar(',');				//
 	}
 
 	activationClokcReset();			// Reset af tælleregister

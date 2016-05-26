@@ -115,6 +115,12 @@
     <Compile Include="ActivationTimer.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ActivitySim.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ActivitySim.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="DataReceiver.c">
       <SubType>compile</SubType>
     </Compile>

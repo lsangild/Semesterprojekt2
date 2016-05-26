@@ -15,16 +15,13 @@ void newMessage()
 {
 	insertNewBit();
 	
-	if (checkForMessage() == 1)
+	if (checkForLegitMessage() == 1)
 	{
-		if (checkForLegitMessage() == 1)
-		{
-			struct X10Message message = readMessage();
+		struct X10Message message = readMessage();
 
-			if (message.unit_ == unitID || message.unit_ == 31)
-			{
-				interpretMessage(message);
-			}
+		if (message.unit_ == unitID || message.unit_ == 31)			// Muligvis enhed 0 som tilgår alle enheder.
+		{
+			interpretMessage(message);
 		}
 	}
 }
@@ -182,7 +179,7 @@ char getBitValue(char byte, int bitNum)		// Testet - Virker
 
 	if (bitNum < 0 && 3 < bitNum)
 	{
-		returnChar = 0b11111111;		// Muligvis stop funktionskald hvis forkert data
+		returnChar = 0b11111111;
 	}
 	
 	int bitShift = bitNum * 2;
@@ -197,7 +194,7 @@ char getBitValue(char byte, int bitNum)		// Testet - Virker
 	}
 	else
 	{
-		returnChar = 0b11111111;		// Muligvis stop funktionskald hvis forkert data
+		returnChar = 0b11111111;
 	}
 
 	return returnChar;

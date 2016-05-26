@@ -27,3 +27,14 @@ int main(void)
 		
 	}
 }
+
+//// Sammenflettet ////
+// Light
+// PirSensor
+// Aktivitets timer
+// 
+
+//// Mangler ////
+// Zero Cross
+// DataReciever
+// AktivitetsSimulering

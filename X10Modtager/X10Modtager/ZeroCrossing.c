@@ -1,6 +1,7 @@
 #define F_CPU 16000000
 #include <util/delay.h>
 #include "ZeroCrossing.h"
+#include "DataReceiver.h"
 
 
 void zeroCrossInit()
@@ -27,8 +28,5 @@ void deactivateZeroCrossInterrupt()
 
 ISR(INT4_vect)
 {
-	if ((PIND & 0b00000100) == 0b00000100)
-	{
-		
-	}
+	newMessage();
 }

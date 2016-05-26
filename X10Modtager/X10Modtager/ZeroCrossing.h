@@ -7,8 +7,6 @@ Zero Cross forbindes til PE4 (Arduino ben 2) Ex Int 4
 #ifndef ZEROCROSSING_H_
 #define ZEROCROSSING_H_
 
-int crossings;
-
 void zeroCrossInit();
 
 void activateZeroCrossInterrupt();

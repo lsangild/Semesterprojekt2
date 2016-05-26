@@ -7,6 +7,7 @@ entity Code_Lock is
 	port(	clk, reset, codeEntry	:	in std_logic;
 			code							:	in std_logic_vector(7 downto 0);
 			lock							:	out std_logic;
+			led							: 	out std_logic; --til testing
 			err							:	out std_logic_vector(1 downto 0)
 			);
 end Code_Lock;
@@ -105,14 +106,18 @@ begin
 	case present_state is
 		when unlocked =>
 			lock <= '1';
+			led <= '1';--til testing
 		when permlock =>
 			if code = adminCode then
 				lock <= '1';
+				led <= '1';--til testing
 			else
 				lock <= '0';
+				led <= '0';--til testing
 			end if;
 		when others =>
 			lock <= '0';
+			led <= '0';--til testing
 		end case;
 end process;
 

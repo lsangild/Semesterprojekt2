@@ -17,7 +17,9 @@ type state2 is (Err_0, Err_1, Err_2, Err_3);
 
 signal present_state, next_state : state;
 signal code_lock_present_state, code_lock_next_state : state2;
-signal codeString : std_logic_vector (7 downto 0) := "01000110"; --signal declaration code string for 70b
+signal codeString 	: std_logic_vector (7 downto 0) :="01000110"; --signal declaration code string for 70b user login
+signal adminCode		: std_logic_vector (7 downto 0) :="00110111"; --signal declaration code string for 55b for admin login
+signal adminUnlock	: std_logic_vector (7 downto 0) :="00101010"; --signal declaration code string for 42b for admin resetting login tries
 
 begin
 state_reg: process(clk, reset)	-- reset and clocking to next state
@@ -67,7 +69,11 @@ begin
 				next_state <= going_idle;
 			end if;
 		when permlock =>
-			null;
+			if code = adminUnlock then
+				next_state <= unlocked;
+			else
+				null;
+			end if;
 		when others =>
 			next_state <= idle;
 	end case;
@@ -94,11 +100,17 @@ begin
 	end if;
 end process;
 
-outputs: process(present_state)	-- State machine output
+outputs: process(present_state, code)	-- State machine output
 begin
 	case present_state is
 		when unlocked =>
 			lock <= '1';
+		when permlock =>
+			if code = adminCode then
+				lock <= '1';
+			else
+				lock <= '0';
+			end if;
 		when others =>
 			lock <= '0';
 		end case;

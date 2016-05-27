@@ -1,5 +1,5 @@
 #include "Light.h"
-#include "uart.h"
+
 
 void lightInit()				// Testet - Virker
 {

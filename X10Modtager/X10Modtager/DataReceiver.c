@@ -1,12 +1,14 @@
 #include "DataReceiver.h"
-#include "uart.h"
+#include "PirSensor.h"
+#include "ActivitySim.h"
 
-const int unitID;
-int inactivityBrightness;
-int activityBrightness;
+int lightLevel;
 
 void dataReceiverInit()
 {
+	pirInit();
+	activitySimInit();
+
 	DDRD = (DDRD & 0b11111011);
 }
 
@@ -19,7 +21,7 @@ void newMessage()
 	{
 		struct X10Message message = readMessage();
 
-		if (message.unit_ == unitID || message.unit_ == 31)			// Muligvis enhed 0 som tilgår alle enheder.
+		if (message.unit_ == UNIT_ID || message.unit_ == 0)			// Muligvis enhed 0 som tilgår alle enheder.
 		{
 			interpretMessage(message);
 		}
@@ -27,18 +29,20 @@ void newMessage()
 }
 
 
-void interpretMessage(struct X10Message m)
+void interpretMessage(struct X10Message m)		// Testet
 {
-	if (m.mode_ == 0)
-	{
-		inactivityBrightness = m.brightness_;
-	}
-	else if (m.mode_ == 1)
-	{
-		activityBrightness = m.brightness_;
-	}
+	setLightLevel(m.brightness_);
 
-	// her mangler en update light funktion.
+	if (m.mode_ == 0 && pirInterruptCheckRunnig() != 1)			// PIR respons
+	{
+		activitySimStop();
+		pirInterruptStart();
+	}
+	else if (m.mode_ == 1 && activitySimCheckRunning() != 1)	// Aktivitessimulering
+	{
+		pirInterruptStop();
+		activitySimStart();
+	}
 }
 
 

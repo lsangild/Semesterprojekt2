@@ -5,18 +5,17 @@ volatile int waitedTime = 0;
 
 void activationTimerInit()
 {
+	lightInit();
+
 	TCCR3A = (TCCR3A & 0b11111100);		// Normal mode vælges
 	TCCR3B = (TCCR3B & 0b11100111);		//
 
-	TCCR3B = (TCCR3B & 0b11111000);		// Preescaler sættes til 0
+	activationTimerStop();
 
-	TCNT3  = sec_time;					// Tælleregister sættes til 49911 = 1 sek delay
+	activationClokcReset();
 
 	TIMSK3 = (TIMSK3 | 0b00000001);		// Interrupt enable
-
-	sei();
-
-	lightInit();
+	sei();								//
 }
 
 
@@ -42,7 +41,7 @@ void activationTimerReset()
 
 void activationClokcReset()
 {
-	TCNT3 = sec_time;
+	TCNT3 = SEC_TIME;					// Tælleregister sættes til 49911 = 1 sek delay
 }
 
 
@@ -50,7 +49,7 @@ ISR(TIMER3_OVF_vect)
 {
 	waitedTime++;
 
-	if (waitedTime >= wait_time)
+	if (waitedTime >= PIR_WAIT_TIME)
 	{
 		setLightLevel(0);
 		waitedTime = 0;
@@ -61,5 +60,5 @@ ISR(TIMER3_OVF_vect)
 		setLightLevel(100);
 	}
 
-	activationClokcReset();			// Reset af tælleregister
+	activationClokcReset();
 }

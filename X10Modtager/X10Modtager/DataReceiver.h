@@ -1,8 +1,3 @@
-/*
-Båndpasfilteret forbindes til PIND2 (Arduino ben 19)
-*/ 
-
-
 #ifndef DATARECEIVER_H_
 #define DATARECEIVER_H_
 
@@ -10,7 +5,7 @@ Båndpasfilteret forbindes til PIND2 (Arduino ben 19)
 #include "X10Message.h"
 
 // Variabler				// Besked modtaget deles op i 4 char variabler
-char firstMessagePart;		// Første 
+char firstMessagePart;		// og shiftes én frem ved hvert zero cross
 char secondMessagePart;		//
 char thirdMessagePart;		// 
 char fourthMessagePart;		//
@@ -19,7 +14,6 @@ char fourthMessagePart;		//
 void dataReceiverInit();
 
 void newMessage();
-
 void interpretMessage(struct X10Message);
 
 void insertNewBit();

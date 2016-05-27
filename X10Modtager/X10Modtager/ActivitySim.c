@@ -2,27 +2,27 @@
 #include "ActivitySim.h"
 #include "Light.h"
 #include <stdlib.h>
-#include "uart.h"			// Debug
 
 volatile int simulatedTime = 0;
 int simTime;
 
 void activitySimInit()			// Testet - Virker
 {
+	lightInit();
+	
 	TCCR4A = (TCCR4A & 0b11111100);		// Normal mode vælges
 	TCCR4B = (TCCR4B & 0b11100111);		//
 
-	TCCR4B = (TCCR4B & 0b11111000);		// Preescaler sættes til 0
+	activitySimStop();				
 
-	TCNT4 = SEC_TIME;					// Tælle register sættes til 49911 = 1 sek.
+	activityClockReset();				// Tælle register sættes til 49911 = 1 sek.
 
 	TIMSK4 = (TIMSK4 | 0b00000001);		// Interrupt enable
-
-	sei();
+	sei();								//
 }
 
 
-void activitySimStart()			// Testet - Virker
+void activitySimStart()
 {
 	TCCR4B = (TCCR4B | 0b00000101);		// Preescaler sættes til 1024
 	TCCR4B = (TCCR4B & 0b11111101);		//
@@ -32,27 +32,35 @@ void activitySimStart()			// Testet - Virker
 }
 
 
-void activitySimStop()			// Testet - Virker
+void activitySimStop()
 {
-	SendChar('S');
 	TCCR4B = (TCCR4B & 0b11111000);		// Preescaler sættes til 0
 	lightOff();
 }
 
 
-int generateNewSimTime()		// Testet - Virker
+int activitySimCheckRunning()
+{
+	if ((TCCR4B & 0b00000111) == 0b00000101)
+		return 1;
+	else
+		return 0;
+}
+
+
+int generateNewSimTime()
 {
 	return ((rand() % MAX_SIM_TIME + 1) + MIN_SIM_TIME);	// Husk at gang med 60 får at få minuter!
 }
 
 
-void activityClockReset()		// Testet - Virker
+void activityClockReset()
 {
-	TCNT4 = SEC_TIME;
+	TCNT4 = SEC_TIME;			// Tælle register sættes til 49911 = 1 sek.
 }
 
 
-ISR(TIMER4_OVF_vect)			// Testet - Virker
+ISR(TIMER4_OVF_vect)
 {
 	simulatedTime++;
 

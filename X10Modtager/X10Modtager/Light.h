@@ -1,9 +1,3 @@
-/*
-LED forbindes til PB7 (Arduino ben 13) og bruger timer 1C.
-9 bit
-Prescaler 256
-*/
-
 #ifndef LIGHT_H_
 #define LIGHT_H_
 

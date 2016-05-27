@@ -19,8 +19,8 @@
 
 
 // Konstanter til Aktivitetssimulering
-#define MAX_SIM_TIME 3		// Maximum tid simuleringen kan have tændt / slukket lys
-#define MIN_SIM_TIME 1		// Minimum tid simuleringen skal køre i sekunder
+#define MAX_SIM_TIME 90		// Maximum tid simuleringen kan have tændt / slukket lys
+#define MIN_SIM_TIME 15		// Minimum tid simuleringen skal køre i sekunder
 
 
 #endif /* GLOBALINCLUDE_H_ */

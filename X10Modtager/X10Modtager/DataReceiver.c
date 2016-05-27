@@ -1,52 +1,52 @@
 #include "DataReceiver.h"
 #include "PirSensor.h"
 #include "ActivitySim.h"
+#include "Light.h"
 
-int lightLevel;
 
 void dataReceiverInit()
 {
 	pirInit();
 	activitySimInit();
 
-	DDRD = (DDRD & 0b11111011);
+	DDRD = (DDRD & 0b11111011);		// Sætter PD2 til indgagn
 }
 
 
 void newMessage()
 {
-	insertNewBit();
+	insertNewBit();		// Indsæt nye bit i bitrækken
 	
-	if (checkForLegitMessage() == 1)
+	if (checkForLegitMessage() == 1)		// Check om der er kommet en ny besked
 	{
-		struct X10Message message = readMessage();
+		struct X10Message message = readMessage();		// Læs beekeden
 
-		if (message.unit_ == UNIT_ID || message.unit_ == 0)			// Muligvis enhed 0 som tilgår alle enheder.
+		if (message.unit_ == UNIT_ID || message.unit_ == 0)		// Hvis beskeden er til denne enhed eller alle enheder
 		{
-			interpretMessage(message);
+			interpretMessage(message);		// Forstå besked og udfør kommandoer
 		}
 	}
 }
 
 
-void interpretMessage(struct X10Message m)		// Testet
+void interpretMessage(struct X10Message m)
 {
-	setLightLevel(m.brightness_);
+	setLightLevel(m.brightness_);		// Sæt den nye lysstyrke
 
 	if (m.mode_ == 0 && pirInterruptCheckRunnig() != 1)			// PIR respons
 	{
-		activitySimStop();
-		pirInterruptStart();
+		activitySimStop();		// Stop Aktivitetssimuleringen
+		pirInterruptStart();	// Start PIR-interruptet
 	}
 	else if (m.mode_ == 1 && activitySimCheckRunning() != 1)	// Aktivitessimulering
 	{
-		pirInterruptStop();
-		activitySimStart();
+		pirInterruptStop();		// Stop PIR-interruptet
+		activitySimStart();		// Start Aktivitetssimuleringen
 	}
 }
 
 
-void insertNewBit()		// Testet - Virker
+void insertNewBit()		// Shifter alle bits i den indlæste bit én frem og indsætter ny bit
 {
 	firstMessagePart = firstMessagePart << 1;
 	firstMessagePart = (firstMessagePart | ((secondMessagePart & 0b10000000) >> 7));
@@ -62,38 +62,23 @@ void insertNewBit()		// Testet - Virker
 }
 
 
-int checkForMessage()		// Testet - Virker
+int checkForLegitMessage()
 {
-	if ((firstMessagePart & 0b11110000) == 0b11100000)
-	{
-		return 1;
-	}
-	else
+	if ((firstMessagePart & 0b11110000) != 0b11100000)	// Chekker for start besked
 	{
 		return 0;
 	}
-}
-
-
-int checkForLegitMessage()		// Testet - Virker
-{
-	if (checkForMessage() == 0)
-	{
-		return 0;
-	}
-
-	// 1
+	
 	int i;
-	for (i = 0; i <= 1; i++)
+	for (i = 0; i <= 1; i++)		// Checker om der er paritet de rigtige steder
 	{
 		if (getBitValue(firstMessagePart, i) == 0b11111111)
 		{
 			return 0;
 		}
 	}
-
-	// 2
-	for (i = 0; i <= 3; i++)
+	
+	for (i = 0; i <= 3; i++)		// Checker om der er paritet de rigtige steder
 	{
 		if (getBitValue(secondMessagePart, i) == 0b11111111)
 		{
@@ -101,8 +86,7 @@ int checkForLegitMessage()		// Testet - Virker
 		}
 	}
 
-	// 3
-	for (i = 0; i <= 3; i++)
+	for (i = 0; i <= 3; i++)		// Checker om der er paritet de rigtige steder
 	{
 		if (getBitValue(thirdMessagePart, i) == 0b11111111)
 		{
@@ -110,8 +94,7 @@ int checkForLegitMessage()		// Testet - Virker
 		}
 	}
 	
-	// 4
-	for (i = 1; i < 3; i++)
+	for (i = 1; i < 3; i++)			// Checker om der er paritet de rigtige steder
 	{
 		if (getBitValue(fourthMessagePart, i) == 0b11111111)
 		{
@@ -123,7 +106,7 @@ int checkForLegitMessage()		// Testet - Virker
 }
 
 
-struct X10Message readMessage()
+struct X10Message readMessage()	// Læser X.10 besked
 {
 	struct X10Message message;
 
@@ -135,7 +118,7 @@ struct X10Message readMessage()
 }
 
 
-int getUnitID()		// Testet - Virker
+int getUnitID()		// Henter enhedesnummer
 {
 	char unitID = 0b00000000;
 
@@ -149,13 +132,13 @@ int getUnitID()		// Testet - Virker
 }
 
 
-int getMode()	// Testet - Virker
+int getMode()		// Henter mode
 {
 	return getBitValue(secondMessagePart, 0);
 }
 
 
-int getBrightness()		// Testet - Virker
+int getBrightness()		// Henter lysviveau
 {
 	char brightness = 0b00000000;
 
@@ -177,29 +160,25 @@ int getBrightness()		// Testet - Virker
 }
 
 
-char getBitValue(char byte, int bitNum)		// Testet - Virker
+char getBitValue(char byte, int bitNum)		// Henter bit nr. bitNum ud af X10 Besked
 {
-	char returnChar;
-
-	if (bitNum < 0 && 3 < bitNum)
+	if (0 >= bitNum && bitNum <= 3)		// Checker først om der bedes om legalt bit
 	{
-		returnChar = 0b11111111;
+		return 0b11111111;
 	}
 	
-	int bitShift = bitNum * 2;
+	int bitShift = bitNum * 2;			
 
 	if ((byte & (0b00000011 << bitShift)) == (0b00000001 << bitShift))
 	{
-		returnChar = 0b00000000;
+		return 0b00000000;		// Det er et '0'
 	}
 	else if ((byte & (0b00000011 << bitShift)) == (0b00000010 << bitShift))
 	{
-		returnChar = 0b00000001;
+		return 0b00000001;		// Det er et '1'
 	}
 	else
 	{
-		returnChar = 0b11111111;
+		return 0b11111111;
 	}
-
-	return returnChar;
 }

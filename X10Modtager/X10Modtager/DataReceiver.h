@@ -17,7 +17,6 @@ void newMessage();
 void interpretMessage(struct X10Message);
 
 void insertNewBit();
-int checkForMessage();
 int checkForLegitMessage();
 
 struct X10Message readMessage();

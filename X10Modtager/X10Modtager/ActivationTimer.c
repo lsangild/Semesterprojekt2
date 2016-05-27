@@ -1,7 +1,6 @@
 #include "ActivationTimer.h"
 #include "Light.h"
 
-volatile int waitedTime = 0;
 
 void activationTimerInit()
 {
@@ -35,7 +34,7 @@ void activationTimerStop()
 
 void activationTimerReset()
 {
-	waitedTime = 0;
+	waitedTime = 0;						// Timeren resetes
 }
 
 
@@ -45,13 +44,13 @@ void activationClokcReset()
 }
 
 
-ISR(TIMER3_OVF_vect)
+ISR(TIMER3_OVF_vect)					// Interrupt hvert sekund
 {
-	waitedTime++;
+	waitedTime++;						
 
-	if (waitedTime >= PIR_WAIT_TIME)
+	if (waitedTime >= PIR_WAIT_TIME)	
 	{
-		setLightLevel(0);
+		setLightLevel(0);				
 		waitedTime = 0;
 		activationTimerStop();
 	}

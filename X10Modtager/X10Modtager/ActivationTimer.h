@@ -3,6 +3,8 @@
 
 #include "GlobalInclude.h"
 
+volatile int waitedTime;
+
 void activationTimerInit();
 void activationTimerStart();
 void activationTimerStop();

@@ -3,8 +3,6 @@
 #include "Light.h"
 #include <stdlib.h>
 
-volatile int simulatedTime = 0;
-int simTime;
 
 void activitySimInit()			// Testet - Virker
 {
@@ -16,6 +14,7 @@ void activitySimInit()			// Testet - Virker
 	activitySimStop();				
 
 	activityClockReset();				// Tælle register sættes til 49911 = 1 sek.
+	simulatedTime = 0;					// Tælleren resetes
 
 	TIMSK4 = (TIMSK4 | 0b00000001);		// Interrupt enable
 	sei();								//

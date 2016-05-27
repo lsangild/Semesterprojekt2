@@ -3,6 +3,9 @@
 
 #include "GlobalInclude.h"
 
+volatile int simulatedTime;
+int simTime;
+
 void activitySimInit();
 void activitySimStart();
 void activitySimStop();

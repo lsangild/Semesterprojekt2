@@ -1,4 +1,3 @@
-/* Simulator = Quartus II Simulator */
 /*
 WARNING: Do NOT edit the input and output ports in this file in a text
 editor if you plan to continue editing the block that represents it in
@@ -168,12 +167,12 @@ TRANSITION_LIST("GPIO_0[0]")
 	{
 		REPEAT = 1;
 		LEVEL 1 FOR 578.282;
-		LEVEL 0 FOR 889.665;
-		LEVEL 1 FOR 1533.498;
-		LEVEL 0 FOR 6755.214;
-		LEVEL 1 FOR 593.11;
-		LEVEL 0 FOR 474.488;
-		LEVEL 1 FOR 934.148;
+		LEVEL 0 FOR 1979.496;
+		LEVEL 1 FOR 904.489;
+		LEVEL 0 FOR 3032.265;
+		LEVEL 1 FOR 2053.637;
+		LEVEL 0 FOR 1208.49;
+		LEVEL 1 FOR 2001.746;
 		LEVEL 0 FOR 370.694;
 		LEVEL 1 FOR 637.593;
 		LEVEL 0 FOR 637.594;

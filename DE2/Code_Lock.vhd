@@ -13,13 +13,13 @@ entity Code_Lock is
 end Code_Lock;
 
 architecture simple of Code_Lock is
-type state is (idle, eval, unlocked, going_idle, wcode, permlock);
+type state is (idle, eval, unlocked, going_idle, wcode, permlock, adminlogin);
 type state2 is (Err_0, Err_1, Err_2, Err_3);
 
 signal present_state, next_state : state;
 signal code_lock_present_state, code_lock_next_state : state2;
 signal codeString 	: std_logic_vector (7 downto 0) :="01000110"; --signal declaration code string for 70b user login
-signal adminCode		: std_logic_vector (7 downto 0) :="00110111"; --signal declaration code string for 55b for admin login
+signal adminCode		: std_logic_vector (7 downto 0) :="00110110"; --signal declaration code string for 54b for admin login
 signal adminUnlock	: std_logic_vector (7 downto 0) :="00101010"; --signal declaration code string for 42b for admin resetting login tries
 
 begin
@@ -41,7 +41,7 @@ begin
 	end if;
 end process;
 
-nxt_state: process(present_state, codeEntry)	-- State Machine transitions
+nxt_state: process(present_state, code, codeEntry)	-- State Machine transitions
 begin
 	next_state <= present_state;
 	case present_state is
@@ -70,10 +70,20 @@ begin
 				next_state <= going_idle;
 			end if;
 		when permlock =>
-			if code = adminUnlock then
+			if codeEntry = '1' and code = adminUnlock then
 				next_state <= unlocked;
+			elsif codeEntry = '1' and code /= adminUnlock then
+				next_state <= permlock;
+			elsif codeEntry = '1' and code = adminCode then
+				next_state <= adminlogin;
+			elsif codeEntry = '1' and code /= adminCode then
+				next_state <= permlock;
 			else
 				null;
+			end if;
+		when adminlogin =>
+			if codeEntry = '0' then
+				next_state <= permlock;
 			end if;
 		when others =>
 			next_state <= idle;
@@ -108,13 +118,16 @@ begin
 			lock <= '1';
 			led <= '1';--til testing
 		when permlock =>
-			if code = adminCode then
-				lock <= '1';
-				led <= '1';--til testing
-			else
+--			if code = adminCode then
+--				lock <= '1';
+--				led <= '1';--til testing
+--			else
 				lock <= '0';
 				led <= '0';--til testing
-			end if;
+--			end if;
+		when adminlogin =>
+			lock <= '1';
+			led <= '1';
 		when others =>
 			lock <= '0';
 			led <= '0';--til testing

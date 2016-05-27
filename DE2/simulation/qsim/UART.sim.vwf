@@ -39,7 +39,7 @@ USER_TYPE("__present_state")
 
 USER_TYPE("|RecTest|Code_Lock:codelock|present_state")
 {
-	VALUES = "present_state.idle", "present_state.eval", "present_state.unlocked", "present_state.going_idle", "present_state.wcode", "present_state.permlock";
+	VALUES = "present_state.idle", "present_state.eval", "present_state.unlocked", "present_state.going_idle", "present_state.wcode", "present_state.permlock", "present_state.adminlogin";
 }
 
 USER_TYPE("|RecTest|Receiver:rec|present_state")
@@ -91,10 +91,20 @@ SIGNAL("LEDR")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = BUS;
-	WIDTH = 2;
+	WIDTH = 3;
 	LSB_INDEX = 0;
 	DIRECTION = OUTPUT;
 	PARENT = "";
+}
+
+SIGNAL("LEDR[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "LEDR";
 }
 
 SIGNAL("LEDR[1]")
@@ -177,8 +187,12 @@ TRANSITION_LIST("GPIO_0[0]")
 		LEVEL 1 FOR 3247.266;
 		LEVEL 0 FOR 3113.817;
 		LEVEL 1 FOR 1705.186;
-		LEVEL 0 FOR 978.628;
-		LEVEL 1 FOR 11187.586;
+		LEVEL 0 FOR 3113.96;
+		LEVEL 1 FOR 1927.608;
+		LEVEL 0 FOR 1112.081;
+		LEVEL 1 FOR 1972.091;
+		LEVEL 0 FOR 978.631;
+		LEVEL 1 FOR 3061.843;
 		LEVEL 0 FOR 2975.597;
 		LEVEL 1 FOR 1949.146;
 		LEVEL 0 FOR 1089.446;
@@ -199,11 +213,9 @@ TRANSITION_LIST("GPIO_1[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 57010.0;
-		LEVEL 1 FOR 17000.0;
-		LEVEL 0 FOR 4020.0;
-		LEVEL 1 FOR 20.0;
-		LEVEL 0 FOR 21950.0;
+		LEVEL 0 FOR 80010.0;
+		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 18990.0;
 	}
 }
 
@@ -217,14 +229,27 @@ TRANSITION_LIST("KEY[0]")
 	}
 }
 
-TRANSITION_LIST("LEDR[1]")
+TRANSITION_LIST("LEDR[2]")
 {
 	NODE
 	{
 		REPEAT = 1;
 		LEVEL 0 FOR 23050.0;
-		LEVEL 1 FOR 55000.0;
-		LEVEL 0 FOR 21950.0;
+		LEVEL 1 FOR 56980.0;
+		LEVEL 0 FOR 19970.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11050.0;
+		LEVEL 1 FOR 12000.0;
+		LEVEL 0 FOR 15000.0;
+		LEVEL 1 FOR 41980.0;
+		LEVEL 0 FOR 19970.0;
 	}
 }
 
@@ -233,12 +258,9 @@ TRANSITION_LIST("LEDR[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 0 FOR 11050.0;
-		LEVEL 1 FOR 12000.0;
-		LEVEL 0 FOR 15000.0;
-		LEVEL 1 FOR 40000.0;
-		LEVEL 0 FOR 2000.0;
-		LEVEL 1 FOR 19950.0;
+		LEVEL 0 FOR 80010.0;
+		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 18990.0;
 	}
 }
 
@@ -291,14 +313,10 @@ TRANSITION_LIST("Code_Lock:codelock|present_state")
 		LEVEL present_state.idle FOR 14000.0;
 		LEVEL present_state.eval FOR 20.0;
 		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.permlock FOR 39980.0;
-		LEVEL present_state.unlocked FOR 20.0;
+		LEVEL present_state.permlock FOR 41960.0;
+		LEVEL present_state.unlocked FOR 1000.0;
 		LEVEL present_state.going_idle FOR 20.0;
-		LEVEL present_state.idle FOR 1940.0;
-		LEVEL present_state.eval FOR 20.0;
-		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.going_idle FOR 960.0;
-		LEVEL present_state.idle FOR 18990.0;
+		LEVEL present_state.idle FOR 18970.0;
 	}
 }
 
@@ -345,12 +363,12 @@ DISPLAY_LINE
 	RADIX = Binary;
 	TREE_INDEX = 4;
 	TREE_LEVEL = 0;
-	CHILDREN = 5, 6;
+	CHILDREN = 5, 6, 7;
 }
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR[1]";
+	CHANNEL = "LEDR[2]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 5;
@@ -360,7 +378,7 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR[0]";
+	CHANNEL = "LEDR[1]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 6;
@@ -370,10 +388,20 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "Receiver:rec|present_state";
+	CHANNEL = "LEDR[0]";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
 	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 4;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|present_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 8;
 	TREE_LEVEL = 0;
 }
 
@@ -382,7 +410,7 @@ DISPLAY_LINE
 	CHANNEL = "Code_Lock:codelock|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 8;
+	TREE_INDEX = 9;
 	TREE_LEVEL = 0;
 }
 

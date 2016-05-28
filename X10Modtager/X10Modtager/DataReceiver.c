@@ -15,50 +15,77 @@ void dataReceiverInit()
 
 void newMessage()
 {
-	insertNewBit();		// Indsæt nye bit i bitrækken
+	_delay_us(330);		// Forsinkelse sikre at vi læser bite.  330 virker på fumlebræt
 	
+	PORTA = (PORTA | 0b00000001);
+	
+	insertNewBit();		// Indsæt nye bit i bitrækken
+
 	if (checkForLegitMessage() == 1)		// Check om der er kommet en ny besked
 	{
+		
+		SendChar(0b00000000);
+		SendChar(firstMessagePart);
+		SendChar(secondMessagePart);
+		SendChar(thirdMessagePart);
+		SendChar(fourthMessagePart);
+		SendChar(0b00000000);
+		SendChar(0b00000000);
+		SendChar(0b00000000);
+
 		struct X10Message message = readMessage();		// Læs beekeden
+		/*
+		SendChar('\n');
+		SendInteger(message.unit_);
+		SendChar('\n');
+		SendInteger(message.mode_);
+		SendChar('\n');
+		SendInteger(message.brightness_);
+		SendChar('\n');
+		*/
 
 		if (message.unit_ == UNIT_ID || message.unit_ == 0)		// Hvis beskeden er til denne enhed eller alle enheder
 		{
 			interpretMessage(message);		// Forstå besked og udfør kommandoer
 		}
 	}
+	_delay_ms(2);
+	PORTA = (PORTA & 0b11111110);
 }
 
 
 void interpretMessage(struct X10Message m)
 {
-	setLightLevel(m.brightness_);		// Sæt den nye lysstyrke
+	setLightLevel(m.brightness_);	// Sæt den nye lysstyrke
 
-	if (m.mode_ == 0 && pirInterruptCheckRunnig() != 1)			// PIR respons
+	if (m.mode_ == 0 && pirInterruptCheckRunnig() != 1)			// Hvis PIR respons skal starte, og ikke alderede er aktiv
 	{
-		activitySimStop();		// Stop Aktivitetssimuleringen
-		pirInterruptStart();	// Start PIR-interruptet
+		activitySimStop();			// Stop Aktivitetssimuleringen
+		pirInterruptStart();		// Start PIR-interruptet
 	}
-	else if (m.mode_ == 1 && activitySimCheckRunning() != 1)	// Aktivitessimulering
+	else if (m.mode_ == 1 && activitySimCheckRunning() != 1)	// Hvis Aktivitessimulering skal starte, og ikke aldere er aktiv
 	{
-		pirInterruptStop();		// Stop PIR-interruptet
-		activitySimStart();		// Start Aktivitetssimuleringen
+		pirInterruptStop();			// Stop PIR-interruptet
+		activitySimStart();			// Start Aktivitetssimuleringen
 	}
 }
 
 
 void insertNewBit()		// Shifter alle bits i den indlæste bit én frem og indsætter ny bit
 {
-	firstMessagePart = firstMessagePart << 1;
-	firstMessagePart = (firstMessagePart | ((secondMessagePart & 0b10000000) >> 7));
+	char newBit = (PINA & 0b00000100);													// Aflæs databit fra båndpasfilter
 
-	secondMessagePart = secondMessagePart << 1;
-	secondMessagePart = (secondMessagePart | ((thirdMessagePart & 0b10000000) >> 7));
+	firstMessagePart = firstMessagePart << 1;											// Shift række 1, én til højre
+	firstMessagePart = (firstMessagePart | ((secondMessagePart & 0b10000000) >> 7));	// og indsæt bit 7 fra 2. række på plads 0 i række 1.
 
-	thirdMessagePart = thirdMessagePart << 1;
-	thirdMessagePart = (thirdMessagePart | ((fourthMessagePart & 0b10000000) >> 7));
+	secondMessagePart = secondMessagePart << 1;											// Shift række 2, én til højre
+	secondMessagePart = (secondMessagePart | ((thirdMessagePart & 0b10000000) >> 7));	// og indsæt bit 7 fra 3. række på plads 0 i række 2.
 
-	fourthMessagePart = fourthMessagePart << 1;
-	fourthMessagePart = (fourthMessagePart | (PIND & 0b00000100));
+	thirdMessagePart = thirdMessagePart << 1;											// Shift række 3, én til højre
+	thirdMessagePart = (thirdMessagePart | ((fourthMessagePart & 0b10000000) >> 7));	// og indsæt bit 7 fra 4. række på plads 0 i række 3.
+
+	fourthMessagePart = fourthMessagePart << 1;											// Shift række 4, én til højre
+	fourthMessagePart = (fourthMessagePart | newBit);									// og indsæt ny fra båndpasfilteret på plads 2 i række 4.
 }
 
 
@@ -128,6 +155,8 @@ int getUnitID()		// Henter enhedesnummer
 	unitID = (unitID | (getBitValue(secondMessagePart, 2) << 1));
 	unitID = (unitID | (getBitValue(secondMessagePart, 1) << 0));
 
+	//SendInteger(unitID);
+
 	return unitID;
 }
 
@@ -162,7 +191,7 @@ int getBrightness()		// Henter lysviveau
 
 char getBitValue(char byte, int bitNum)		// Henter bit nr. bitNum ud af X10 Besked
 {
-	if (0 >= bitNum && bitNum <= 3)		// Checker først om der bedes om legalt bit
+	if (bitNum < 0 && 3 < bitNum)		// Checker først om der bedes om legalt bit
 	{
 		return 0b11111111;
 	}
@@ -182,3 +211,23 @@ char getBitValue(char byte, int bitNum)		// Henter bit nr. bitNum ud af X10 Besk
 		return 0b11111111;
 	}
 }
+
+
+
+/*
+Kode til at få skrevet hele arrayet ud:
+-----------------------------------------
+SendChar(0b00000000);
+SendChar(firstMessagePart);
+SendChar(secondMessagePart);
+SendChar(thirdMessagePart);
+SendChar(fourthMessagePart);
+SendChar(0b00000000);
+SendChar(0b00000000);
+SendChar(0b00000000);
+
+
+
+
+
+*/

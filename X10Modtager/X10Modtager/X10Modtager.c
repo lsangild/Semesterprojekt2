@@ -8,7 +8,6 @@
 // Lys					PB7	Arduino ben 13	Timer 1	C-System	Mode 2 (9-bit fasekorrekt PWM)	Prescaler: 256
 // ActivationTimer (1s)	--	--				Timer 3				Mode 0 (Normal 16-bit)			Prescaler: 1024
 // Aktiviters Simulering--	--				Timer 4				Mode 0 (Normal 16-bit)			Prescaler: 1024		
-//
 
 
 #include "GlobalInclude.h"
@@ -18,8 +17,12 @@
 
 int main(void)
 {
-	zeroCrossInit();
-	pirInterruptStart();
+	DDRA = 0b00000001;
+	InitUART(9600, 8, 'N');
+	zeroCrossInit();				// Initere zero Crossing og alle underliggende systemer.
+	//pirInterruptStart();			// Starter i PIR respons stadige
+	activateZeroCrossInterrupt();	// 
+	
 	
 	while(1)
 	{

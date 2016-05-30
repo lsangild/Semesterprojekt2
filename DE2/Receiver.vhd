@@ -56,19 +56,19 @@ end process;
 
 output : process(present_state)
 begin
+if falling_edge(clk_baud) then
 	case present_state is
 		when latchData =>
 			rxvalid <= '1';
 		when reading =>
-			if falling_edge(clk_baud) then
-				rxdata(counter) <= rxd;
-				counter <= counter + 1;
-			else
-				null;
-			end if;
+			rxdata(counter) <= rxd;
+			counter <= counter + 1;
 		when others	=>
-			counter <= 1;
 			rxvalid <= '0';
+			counter <= 0;
 	end case;
+else
+	null;
+end if;
 end process;
 end Rec;

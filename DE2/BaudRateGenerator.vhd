@@ -23,11 +23,11 @@ begin
 		null;
 	end if;
 	case clk_count is
-		--when 867 => --For real test
-		when 19 =>	-- For simulation
+		when 867 => --For real test
+		--when 19 =>	-- For simulation
 			clk_baud <= '1';
-		--when 868 =>	--For real test
-		when 20 =>	-- For simulation
+		when 868 =>	--For real test
+		--when 20 =>	-- For simulation
 			clk_count := 0;
 		when others =>
 		clk_baud <= '0';

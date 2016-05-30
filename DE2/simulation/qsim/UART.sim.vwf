@@ -39,7 +39,7 @@ USER_TYPE("__present_state")
 
 USER_TYPE("|RecTest|Code_Lock:codelock|present_state")
 {
-	VALUES = "present_state.idle", "present_state.eval", "present_state.unlocked", "present_state.going_idle", "present_state.wcode", "present_state.permlock", "present_state.adminlogin";
+	VALUES = "present_state.idle", "present_state.eval", "present_state.unlocked", "present_state.going_idle", "present_state.wcode", "present_state.permlock";
 }
 
 USER_TYPE("|RecTest|Receiver:rec|present_state")
@@ -87,46 +87,6 @@ SIGNAL("KEY[0]")
 	PARENT = "";
 }
 
-SIGNAL("LEDR")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = BUS;
-	WIDTH = 3;
-	LSB_INDEX = 0;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("LEDR[2]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
-SIGNAL("LEDR[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
-SIGNAL("LEDR[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
 SIGNAL("Receiver:rec|present_state")
 {
 	VALUE_TYPE = ENUM;
@@ -147,6 +107,26 @@ SIGNAL("Code_Lock:codelock|present_state")
 	DIRECTION = MACHINE;
 	PARENT = "";
 	ENUM_NAME = "|RecTest|Code_Lock:codelock|present_state";
+}
+
+SIGNAL("LEDR[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("LEDR[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
 }
 
 TRANSITION_LIST("CLOCK_50")
@@ -196,15 +176,21 @@ TRANSITION_LIST("GPIO_0[0]")
 		LEVEL 0 FOR 2975.597;
 		LEVEL 1 FOR 1949.146;
 		LEVEL 0 FOR 1089.446;
-		LEVEL 1 FOR 11860.517;
-		LEVEL 0 FOR 3098.989;
-		LEVEL 1 FOR 1000.87;
-		LEVEL 0 FOR 956.387;
-		LEVEL 1 FOR 897.076;
-		LEVEL 0 FOR 1119.491;
-		LEVEL 1 FOR 1000.87;
-		LEVEL 0 FOR 993.456;
-		LEVEL 1 FOR 21465.087;
+		LEVEL 1 FOR 6026.015;
+		LEVEL 0 FOR 2854.987;
+		LEVEL 1 FOR 2159.542;
+		LEVEL 0 FOR 823.554;
+		LEVEL 1 FOR 1994.831;
+		LEVEL 0 FOR 1043.168;
+		LEVEL 1 FOR 6972.757;
+		LEVEL 0 FOR 2946.493;
+		LEVEL 1 FOR 1134.675;
+		LEVEL 0 FOR 915.06;
+		LEVEL 1 FOR 1006.566;
+		LEVEL 0 FOR 1043.168;
+		LEVEL 1 FOR 1024.867;
+		LEVEL 0 FOR 1006.566;
+		LEVEL 1 FOR 11440.494;
 	}
 }
 
@@ -215,9 +201,13 @@ TRANSITION_LIST("GPIO_1[0]")
 		REPEAT = 1;
 		LEVEL 0 FOR 11030.0;
 		LEVEL 1 FOR 980.0;
-		LEVEL 0 FOR 68000.0;
+		LEVEL 0 FOR 38040.0;
+		LEVEL 1 FOR 940.0;
+		LEVEL 0 FOR 23000.0;
 		LEVEL 1 FOR 1000.0;
-		LEVEL 0 FOR 18990.0;
+		LEVEL 0 FOR 15020.0;
+		LEVEL 1 FOR 1000.0;
+		LEVEL 0 FOR 8990.0;
 	}
 }
 
@@ -228,43 +218,6 @@ TRANSITION_LIST("KEY[0]")
 		REPEAT = 1;
 		LEVEL 0 FOR 14.532;
 		LEVEL 1 FOR 99985.468;
-	}
-}
-
-TRANSITION_LIST("LEDR[2]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 38050.0;
-		LEVEL 1 FOR 41980.0;
-		LEVEL 0 FOR 19970.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 23050.0;
-		LEVEL 1 FOR 15000.0;
-		LEVEL 0 FOR 12000.0;
-		LEVEL 1 FOR 29980.0;
-		LEVEL 0 FOR 19970.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL 0 FOR 11030.0;
-		LEVEL 1 FOR 980.0;
-		LEVEL 0 FOR 68000.0;
-		LEVEL 1 FOR 1000.0;
-		LEVEL 0 FOR 18990.0;
 	}
 }
 
@@ -284,7 +237,7 @@ TRANSITION_LIST("Receiver:rec|present_state")
 		LEVEL present_state.idle FOR 4000.0;
 		NODE
 		{
-			REPEAT = 2;
+			REPEAT = 3;
 			LEVEL present_state.reading FOR 9000.0;
 			LEVEL present_state.stopping FOR 1000.0;
 			LEVEL present_state.latchData FOR 1000.0;
@@ -293,11 +246,11 @@ TRANSITION_LIST("Receiver:rec|present_state")
 		LEVEL present_state.reading FOR 9000.0;
 		LEVEL present_state.stopping FOR 1000.0;
 		LEVEL present_state.latchData FOR 1000.0;
-		LEVEL present_state.idle FOR 7000.0;
+		LEVEL present_state.idle FOR 5000.0;
 		LEVEL present_state.reading FOR 9000.0;
 		LEVEL present_state.stopping FOR 1000.0;
 		LEVEL present_state.latchData FOR 1000.0;
-		LEVEL present_state.idle FOR 19010.0;
+		LEVEL present_state.idle FOR 9010.0;
 	}
 }
 
@@ -321,10 +274,34 @@ TRANSITION_LIST("Code_Lock:codelock|present_state")
 		LEVEL present_state.idle FOR 11000.0;
 		LEVEL present_state.eval FOR 20.0;
 		LEVEL present_state.wcode FOR 20.0;
-		LEVEL present_state.permlock FOR 29960.0;
+		LEVEL present_state.permlock FOR 39960.0;
 		LEVEL present_state.unlocked FOR 1000.0;
 		LEVEL present_state.going_idle FOR 20.0;
-		LEVEL present_state.idle FOR 18970.0;
+		LEVEL present_state.idle FOR 8970.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 23050.0;
+		LEVEL 1 FOR 15000.0;
+		LEVEL 0 FOR 12000.0;
+		LEVEL 1 FOR 39980.0;
+		LEVEL 0 FOR 9970.0;
+	}
+}
+
+TRANSITION_LIST("LEDR[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 38050.0;
+		LEVEL 1 FOR 51980.0;
+		LEVEL 0 FOR 9970.0;
 	}
 }
 
@@ -366,50 +343,10 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 4;
-	TREE_LEVEL = 0;
-	CHILDREN = 5, 6, 7;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[2]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 5;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[1]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 6;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[0]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 7;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
 	CHANNEL = "Receiver:rec|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 8;
+	TREE_INDEX = 4;
 	TREE_LEVEL = 0;
 }
 
@@ -418,7 +355,25 @@ DISPLAY_LINE
 	CHANNEL = "Code_Lock:codelock|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 9;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "LEDR[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 7;
 	TREE_LEVEL = 0;
 }
 

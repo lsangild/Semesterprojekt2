@@ -7,13 +7,12 @@ entity Code_Lock is
 	port(	clk, reset, codeEntry	:	in std_logic;
 			code							:	in std_logic_vector(7 downto 0);
 			lock							:	out std_logic;
-			led							: 	out std_logic; --til testing
 			err							:	out std_logic_vector(1 downto 0)
 			);
 end Code_Lock;
 
 architecture simple of Code_Lock is
-type state is (idle, eval, unlocked, going_idle, wcode, permlock, adminlogin);
+type state is (idle, eval, unlocked, going_idle, wcode, permlock);
 type state2 is (Err_0, Err_1, Err_2, Err_3);
 
 signal present_state, next_state : state;
@@ -72,18 +71,8 @@ begin
 		when permlock =>
 			if codeEntry = '1' and code = adminUnlock then
 				next_state <= unlocked;
-			elsif codeEntry = '1' and code /= adminUnlock then
-				next_state <= permlock;
-			elsif codeEntry = '1' and code = adminCode then
-				next_state <= adminlogin;
-			elsif codeEntry = '1' and code /= adminCode then
-				next_state <= permlock;
 			else
 				null;
-			end if;
-		when adminlogin =>
-			if codeEntry = '0' then
-				next_state <= permlock;
 			end if;
 		when others =>
 			next_state <= idle;
@@ -116,21 +105,14 @@ begin
 	case present_state is
 		when unlocked =>
 			lock <= '1';
-			led <= '1';--til testing
 		when permlock =>
---			if code = adminCode then
---				lock <= '1';
---				led <= '1';--til testing
---			else
+			if codeEntry = '1' and code = adminCode then
+				lock <= '1';
+			else
 				lock <= '0';
-				led <= '0';--til testing
---			end if;
-		when adminlogin =>
-			lock <= '1';
-			led <= '1';
+			end if;
 		when others =>
 			lock <= '0';
-			led <= '0';--til testing
 		end case;
 end process;
 

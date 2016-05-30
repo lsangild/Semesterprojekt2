@@ -12,6 +12,7 @@ end Code_Lock;
 
 architecture simple of Code_Lock is
 type state is (idle, eval, going_idle);
+constant end_length : natural := 128;	--Skal også ændres i FullTester (linje 15), Code_Lock (linje 8) og her (linje 7 og 16)
 
 signal present_state, next_state : state;
 
@@ -48,7 +49,7 @@ outputs: process(present_state)	-- State machine output
 begin
 	case present_state is
 		when eval =>
-			if code(128 downto 65) = code(64 downto 1) then
+			if code(end_length downto (end_length/2 + 1)) = code(end_length/2 downto 1) then
 				lock <= '1';
 			else
 				lock <= '0';

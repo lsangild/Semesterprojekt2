@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 
 entity Receiver is
 	port (	rxd, reset, clk_baud	: in std_logic;
-				rxdata					: out std_logic_vector(1 to 128); --Skal også ændres i FullTester (linje 15), Code_Lock (linje 8) og her (linje 7 og 16)
+				rxdata					: out std_logic_vector(128 downto 1); --Skal også ændres i FullTester (linje 15), Code_Lock (linje 8) og her (linje 7 og 16)
 				rxvalid					: out std_logic
 			);
 end Receiver;

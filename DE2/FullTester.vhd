@@ -6,7 +6,8 @@ entity FullTester is
 	port (	CLOCK_50	: in std_logic;
 				KEY		: in std_logic_vector(0 downto 0);
 				GPIO_0	: in std_logic_vector(0 downto 0);
-				GPIO_1	: out std_logic_vector(0 downto 0)
+				GPIO_1	: out std_logic_vector(0 downto 0);
+				LEDR		: out std_logic_vector(11 downto 0)
 	);
 end FullTester;
 
@@ -17,4 +18,5 @@ begin
 gen		: entity work.BaudRateGenerator	port map (	clk => CLOCK_50, reset => KEY(0), clk_baud => clk_57600);
 rec		: entity work.Receiver				port map (	rxd => GPIO_0(0), reset => KEY(0), clk_baud => clk_57600, rxdata => indata, rxvalid => recvalid);
 codelock	: entity work.Code_Lock				port map (	clk => CLOCK_50, reset => KEY(0), codeEntry => recvalid, code => indata, lock => GPIO_1(0));
+LEDR <= indata(6 downto 1) & indata(70 downto 65);
 end test;

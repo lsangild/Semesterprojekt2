@@ -1,4 +1,3 @@
-/* Simulator = Quartus II Simulator */
 /*
 WARNING: Do NOT edit the input and output ports in this file in a text
 editor if you plan to continue editing the block that represents it in
@@ -29,7 +28,7 @@ HEADER
 	DATA_DURATION = 100000.0;
 	SIMULATION_TIME = 0.0;
 	GRID_PHASE = 0.0;
-	GRID_PERIOD = 4000.0;
+	GRID_PERIOD = 100.0;
 	GRID_DUTY_CYCLE = 50;
 }
 
@@ -78,56 +77,6 @@ SIGNAL("KEY[0]")
 	PARENT = "";
 }
 
-SIGNAL("LEDR")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = BUS;
-	WIDTH = 4;
-	LSB_INDEX = 0;
-	DIRECTION = OUTPUT;
-	PARENT = "";
-}
-
-SIGNAL("LEDR[3]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
-SIGNAL("LEDR[2]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
-SIGNAL("LEDR[1]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
-SIGNAL("LEDR[0]")
-{
-	VALUE_TYPE = NINE_LEVEL_BIT;
-	SIGNAL_TYPE = SINGLE_BIT;
-	WIDTH = 1;
-	LSB_INDEX = -1;
-	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
-}
-
 SIGNAL("Receiver:rec|present_state")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -146,6 +95,326 @@ SIGNAL("Code_Lock:codelock|present_state")
 	LSB_INDEX = -1;
 	DIRECTION = MACHINE;
 	PARENT = "";
+}
+
+SIGNAL("Receiver:rec|counter")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 31;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Receiver:rec|counter[30]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[29]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[28]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[27]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[26]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[25]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[24]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[23]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[22]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[21]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[20]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[19]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[18]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[17]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[16]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
+}
+
+SIGNAL("Receiver:rec|counter[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Receiver:rec|counter";
 }
 
 TRANSITION_LIST("CLOCK_50")
@@ -167,17 +436,9 @@ TRANSITION_LIST("GPIO_0[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 3001.445;
-		LEVEL 0 FOR 7979.455;
-		LEVEL 1 FOR 3367.476;
-		LEVEL 0 FOR 11859.371;
-		LEVEL 1 FOR 24743.628;
-		LEVEL 0 FOR 7686.63;
-		LEVEL 1 FOR 3733.507;
-		LEVEL 0 FOR 11786.166;
-		LEVEL 1 FOR 7540.218;
-		LEVEL 0 FOR 4026.33;
-		LEVEL 1 FOR 14275.774;
+		LEVEL 1 FOR 3270.33;
+		LEVEL 0 FOR 51473.33;
+		LEVEL 1 FOR 45256.34;
 	}
 }
 
@@ -200,42 +461,6 @@ TRANSITION_LIST("KEY[0]")
 	}
 }
 
-TRANSITION_LIST("LEDR[3]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 100000.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[2]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 100000.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[1]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 100000.0;
-	}
-}
-
-TRANSITION_LIST("LEDR[0]")
-{
-	NODE
-	{
-		REPEAT = 1;
-		LEVEL X FOR 100000.0;
-	}
-}
-
 TRANSITION_LIST("Receiver:rec|present_state")
 {
 	NODE
@@ -246,6 +471,285 @@ TRANSITION_LIST("Receiver:rec|present_state")
 }
 
 TRANSITION_LIST("Code_Lock:codelock|present_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[30]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[29]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[28]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[27]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[26]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[25]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[24]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[23]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[22]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[21]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[20]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[19]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[18]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[17]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[16]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("Receiver:rec|counter[0]")
 {
 	NODE
 	{
@@ -292,60 +796,10 @@ DISPLAY_LINE
 
 DISPLAY_LINE
 {
-	CHANNEL = "LEDR";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 4;
-	TREE_LEVEL = 0;
-	CHILDREN = 5, 6, 7, 8;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[3]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 5;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[2]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 6;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[1]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 7;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
-	CHANNEL = "LEDR[0]";
-	EXPAND_STATUS = COLLAPSED;
-	RADIX = Binary;
-	TREE_INDEX = 8;
-	TREE_LEVEL = 1;
-	PARENT = 4;
-}
-
-DISPLAY_LINE
-{
 	CHANNEL = "Receiver:rec|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 9;
+	TREE_INDEX = 4;
 	TREE_LEVEL = 0;
 }
 
@@ -354,8 +808,328 @@ DISPLAY_LINE
 	CHANNEL = "Code_Lock:codelock|present_state";
 	EXPAND_STATUS = COLLAPSED;
 	RADIX = Binary;
-	TREE_INDEX = 10;
+	TREE_INDEX = 5;
 	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 0;
+	CHILDREN = 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[30]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[29]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[28]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[27]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[26]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[25]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[24]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[23]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[22]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 15;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[21]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 16;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[20]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 17;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[19]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 18;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[18]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 19;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[17]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 20;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[16]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 21;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 22;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 23;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 24;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 25;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 26;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 27;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 28;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 29;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 30;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 31;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 32;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 33;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 34;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 35;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 36;
+	TREE_LEVEL = 1;
+	PARENT = 6;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Receiver:rec|counter[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 37;
+	TREE_LEVEL = 1;
+	PARENT = 6;
 }
 
 TIME_BAR

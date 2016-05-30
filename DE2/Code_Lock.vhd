@@ -25,7 +25,7 @@ begin
 	end if;
 end process;
 
-nxt_state: process(present_state, code, codeEntry)	-- State Machine transitions
+nxt_state: process(present_state, codeEntry)	-- State Machine transitions
 begin
 	next_state <= present_state;
 	case present_state is
@@ -34,7 +34,9 @@ begin
 				next_state <= eval;
 			end if;
 		when eval =>
-			next_state <= going_idle;
+			if codeEntry = '0' then
+				next_state <= going_idle;
+			end if;
 		when going_idle =>
 			next_state <= idle;
 		when others =>

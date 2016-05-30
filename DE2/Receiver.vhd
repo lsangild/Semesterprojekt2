@@ -62,15 +62,12 @@ begin
 		when reading =>
 			if falling_edge(clk_baud) then
 				rxdata(counter) <= rxd;
-				if counter = end_length then
-					counter <= 1;
-				else
-					counter <= counter + 1;
-				end if;
+				counter <= counter + 1;
 			else
 				null;
 			end if;
 		when others	=>
+			counter <= 1;
 			rxvalid <= '0';
 	end case;
 end process;
